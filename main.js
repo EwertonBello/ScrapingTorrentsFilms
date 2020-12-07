@@ -1,3 +1,4 @@
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 const BASE_URL = "https://www.baixarfilmetorrent.net/?s=";
 
 function create_film_item(title, img, audio, ano, nota_imdb, link) {
@@ -30,7 +31,7 @@ function create_film_item(title, img, audio, ano, nota_imdb, link) {
 
 function load_films(s) {
 	const url = BASE_URL+s;
-	fetch(url)
+	fetch(proxyUrl+url)
 	  .then(response => response.text())
 	  .then(html => {
 
@@ -128,7 +129,7 @@ function load_film(url) {
 		<progress class="progress is-small is-primary mt-5" max="100">15%</progress>
 	`;
 
-	fetch(url)
+	fetch(proxyUrl+url)
 	  .then(response => response.text())
 	  .then(html => {
 
