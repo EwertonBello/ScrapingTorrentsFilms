@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scraping Torrents Films</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+  </head>
+  <body>
+	<section class="section">
+		<div class="container has-text-centered">
+			<h1 class="title">
+				Faça sua busca por filmes/séries
+			</h1>
+			<div class="field">
+				<div id="div-search" class="control is-large">
+					<input id="input-search" class="input is-large is-rounded" type="text" placeholder="Faça uma busca">
+				</div>
+			</div>
+			<div class="control">
+				<a onclick="search_film()" class="button is-primary is-large is-rounded">
+					Buscar
+				</a>
+			</div>
+
+			<div id="list_films"></div>
+		</div>
+	</section>
+
+  
+	<script src="main.js"></script>
+  </body>
+</html>
