@@ -1,35 +1,23 @@
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 const BASE_URL = "https://www.baixarfilmetorrent.net/?s=";
 
-function create_film_item(title, img, audio, ano, nota_imdb, link) {
+function createFilmItem(title, img, audio, ano, nota_imdb, link) {
 	let film_item = `
-		<div class="card mt-3" onclick="load_film('${link}')">
-		  <div class="card-content">
-		    <div class="media">
-		      <div class="media-left">
-		        <figure class="image is-180x240">
-		          <img src="${img}" alt="Placeholder image">
-		        </figure>
-		      </div>
-		      <div class="media-content">
-		        <p class="title is-4">${title}</p>
-		        <p class="subtitle is-6">${audio} - ${ano}</p>
-
-				<div class="control">
-					<div class="tags has-addons is-centered">
-						<span class="tag is-dark">IMDB</span>
-						<span class="tag is-success">${nota_imdb}</span>
-					</div>
-				</div>
-		      </div>
-		    </div>
-		  </div>
+		<div class="card mt-3 onclick="loadFilm('${link}')">
+			<card className="content">
+				<img class="mt-3" src="${img}" alt="item-film">
+				<p class="title is-4">${title}</p>
+				<p class="subtitle is-6">${audio} - ${ano}</p>
+				<span is-6>${audio}</span>
+				<span class="tag is-dark">IMDB</span>
+				<span class="mb-3 tag is-success">${nota_imdb}</span>
+			</card>
 		</div>
 	`;
 	return film_item;
 }
 
-function load_films(s) {
+function loadFilms(s) {
 	const url = BASE_URL+s;
 	fetch(proxyUrl+url)
 	  .then(response => response.text())
@@ -49,7 +37,7 @@ function load_films(s) {
 	  		let film_imdb = film.querySelector('.nota-imdb').innerText;
 	  		let film_link = film.querySelector('a').href;
 
-	  		list_films += create_film_item(film_title, film_img, film_audio, film_ano, film_imdb, film_link);
+	  		list_films += createFilmItem(film_title, film_img, film_audio, film_ano, film_imdb, film_link);
 
 	  	});
 	  	if (list_films.length === 0) {
@@ -63,11 +51,11 @@ function load_films(s) {
 	  .catch(error => console.log('error', error));
 }
 
-function search_film() {
+function searchFilm() {
 	let search_value = document.getElementById("input-search").value;
 
 	document.getElementById("div-search").classList.add("is-loading");
-	load_films(search_value);
+	loadFilms(search_value);
 }
 
 document.getElementById("input-search")
@@ -78,7 +66,7 @@ document.getElementById("input-search")
 });
 
 // DETAILS
-function create_film_details(title, img, sinopse, links) {
+function createFilmDetails(title, img, sinopse, links) {
 	let torrent_items = '';
 	links.forEach((link, i)=>{
 		let link_res = link.querySelector('.td-mv-res').innerText;
@@ -123,7 +111,7 @@ function create_film_details(title, img, sinopse, links) {
 	return film_details;
 }
 
-function load_film(url) {
+function loadFilm(url) {
 	const list_films = document.getElementById('list_films');
 	list_films.innerHTML = `
 		<progress class="progress is-small is-primary mt-5" max="100">15%</progress>

@@ -1,0 +1,19 @@
+.dark-mode-container {
+    margin-top: 2%;
+    width: 100%;
+}
+
+.dark-mode-container button {
+    margin: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+}
+
+.dark-mode-container button img {
+    width: 40px;
+    height: 40px;
+}

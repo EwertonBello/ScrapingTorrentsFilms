@@ -6,30 +6,38 @@
     <title>Scraping Torrents Films</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-
+	<link rel="stylesheet" href="dark-mode.css">
   </head>
-  <body>
-	<section class="section">
-		<div class="container has-text-centered">
-			<h1 class="title">
-				Faça sua busca por filmes/séries
-			</h1>
-			<div class="field">
-				<div id="div-search" class="control is-large">
-					<input id="input-search" class="input is-large is-rounded" type="text" placeholder="Faça uma busca">
+  <body onload="startsTheme()">
+	  <div class="dark-mode-container">
+		  <button onclick="toggleDarkMode()" type="button">
+			<img id="dark-mode-img" src="./dark-mode-assets/moon.svg" alt="dark-mode">
+		  </button>
+	  </div>
+	  <section class="section is-medium">
+		  <div class="container has-text-centered">
+				<h1 class="title-via-js">
+					Faça sua busca por filmes e séries
+				</h1>
+	
+				<div class="field">
+					<div id="div-search" class="control is-large">
+						<input id="input-search" class="input is-large is-rounded" type="text" placeholder="O que vamos assistir hoje?">
+					</div>
 				</div>
+	
+				<div class="control">
+					<a onclick="searchFilm()" class="button is-primary is-large is-rounded">
+						Buscar
+					</a>
+				</div>
+	
+				<div id="list_films"></div>
 			</div>
-			<div class="control">
-				<a onclick="search_film()" class="button is-primary is-large is-rounded">
-					Buscar
-				</a>
-			</div>
-
-			<div id="list_films"></div>
-		</div>
-	</section>
-
-  
-	<script src="main.js"></script>
+		</section>
+		
+	
+		<script src="main.js"></script>
+		<script src="darkMode.js"></script>
   </body>
 </html>
