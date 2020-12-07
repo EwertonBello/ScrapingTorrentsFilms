@@ -15,7 +15,6 @@ function loadDarkModeContent(img, backgroundColor){
 
 function getDarkStatusFromLocalStorage(){
     isDark = localStorage.getItem('isDark');
-
     return isDark;
 }
 
@@ -26,11 +25,11 @@ function startsTheme(){
     isDark = getDarkStatusFromLocalStorage();
     if(isDark === 'true'){
         titleItem.style.color = '#F0F0F4';
-        loadDarkModeContent(darkImg, darkColor);
+        loadDarkModeContent(sunImg, darkColor);
     }
     else{
         titleItem.style.color = '#000000';
-        loadDarkModeContent(sunImg, lightColor);
+        loadDarkModeContent(darkImg, lightColor);
     }
 }
 
