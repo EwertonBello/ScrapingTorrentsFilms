@@ -5,12 +5,15 @@ function create_film_item(title, img, audio, ano, nota_imdb, link) {
 	let film_item = `
 		<div class="card mt-3" onclick="load_film('${link}')">
 		  <div class="card-content">
-		    <div class="media">
-		      <div class="media-left">
-		        <figure class="image is-180x240">
-		          <img src="${img}" alt="Placeholder image">
-		        </figure>
-		      </div>
+		    <div class="media tile is-ancestor">
+
+			<div class="tile is-parent">
+			    <figure class="image is-180x240">
+			    	<img src="${img}" alt="Placeholder image">
+			    </figure>
+			</div>
+
+			<div class="tile is-parent is-9">
 		      <div class="media-content">
 		        <p class="title is-4">${title}</p>
 		        <p class="subtitle is-6">${audio} - ${ano}</p>
@@ -22,10 +25,13 @@ function create_film_item(title, img, audio, ano, nota_imdb, link) {
 					</div>
 				</div>
 		      </div>
+			</div>
+
 		    </div>
 		  </div>
 		</div>
 	`;
+
 	return film_item;
 }
 
