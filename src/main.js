@@ -72,9 +72,9 @@ function load_films(s) {
 }
 
 function search_film() {
-	console.log('test');
 	const search_input = document.getElementById("input-search");
 	let search_value = search_input.value;
+
 	search_input.disabled = true;
 	document.getElementById("btn-search").setAttribute('disabled', true);
 
@@ -89,22 +89,39 @@ document.getElementById("input-search")
   }
 });
 
-// DETAILS
+// ########## DETAILS ##########
 function create_film_details(title, img, sinopse, links) {
 	let torrent_items = '';
 	links.forEach((link, i)=>{
-		let link_res = link.querySelector('.td-mv-res').innerText;
-		let link_quality = link.querySelector('.td-mv-qua').innerText;
-		let link_tam = link.querySelector('.td-mv-tam').innerText;
-		let link_format = link.querySelector('.td-mv-for').innerText;
+		let link_eps = '';
+		let link_res = '';
+		let link_quality = '';
+		let link_tam = '';
+		let link_format = '';
+
+		if (link.querySelector('.td-ep-eps')) {
+			link_eps = '<td>'+link.querySelector('.td-ep-eps').innerText+'</td>';
+			link_res = link.querySelector('.td-ep-res').innerText;
+			link_quality = link.querySelector('.td-ep-qua').innerText;
+			link_tam = link.querySelector('.td-ep-tam').innerText;
+			link_format = link.querySelector('.td-ep-for').innerText;
+		} else {
+			link_res = link.querySelector('.td-mv-res').innerText;
+			link_quality = link.querySelector('.td-mv-qua').innerText;
+			link_tam = link.querySelector('.td-mv-tam').innerText;
+			link_format = link.querySelector('.td-mv-for').innerText;
+		}
 		let link_download = link.querySelector('a').href;
 		
 		torrent_items += `
-            <a href="${link_download}" class="column">
-	            <span>
-					<p>${link_res} - ${link_quality} - ${link_tam} - ${link_format}</p>
-	            </span>
-			</a>
+			<tr>
+				${link_eps}
+				<td>${link_res}</td>
+				<td>${link_quality}</td>
+				<td>${link_tam}</td>
+				<td>${link_format}</td>
+				<td><a href="${link_download}">Link</a></td>
+		    </tr>
 		`;
 
 	});
@@ -122,9 +139,11 @@ function create_film_details(title, img, sinopse, links) {
 		        <p class="title is-4 mt-2">${title}</p>
 		        <p class="subtitle is-6 mt-2">${sinopse}</p>
 
-		        <div class="columns is-desktop">
-					${torrent_items}
-		        </div>
+		        <div class="table-container">
+			        <table class="table">
+						${torrent_items}
+			        </table>
+				</div>
 
 		      </div>
 		    </div>
@@ -151,7 +170,7 @@ function load_film(url) {
   		let film_title = film.querySelector('.entry-title').innerText;
 	  	let film_img = film.querySelector('img').src;
 	  	let film_sinopse = film.querySelectorAll('p')[7].innerText;
-	  	let film_links = film.querySelectorAll('.tr-mv-list');
+	  	let film_links = film.querySelectorAll('.tr-mv-list').length > 0? film.querySelectorAll('.tr-mv-list') : film.querySelectorAll('.tr-ep-list');
 
 	  	let details_film = create_film_details(film_title, film_img, film_sinopse, film_links);
 	  	
