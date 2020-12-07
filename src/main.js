@@ -65,12 +65,18 @@ function load_films(s) {
 	  	}
 	  	document.getElementById('list_films').innerHTML = list_films;
 	  	document.getElementById("div-search").classList.remove("is-loading");
+	  	document.getElementById("input-search").disabled = false;
+	  	document.getElementById("btn-search").removeAttribute('disabled');
 	  })
 	  .catch(error => console.log('error', error));
 }
 
 function search_film() {
-	let search_value = document.getElementById("input-search").value;
+	console.log('test');
+	const search_input = document.getElementById("input-search");
+	let search_value = search_input.value;
+	search_input.disabled = true;
+	document.getElementById("btn-search").setAttribute('disabled', true);
 
 	document.getElementById("div-search").classList.add("is-loading");
 	load_films(search_value);
