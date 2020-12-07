@@ -5,12 +5,15 @@ function create_film_item(title, img, audio, ano, nota_imdb, link) {
 	let film_item = `
 		<div class="card mt-3" onclick="load_film('${link}')">
 		  <div class="card-content">
-		    <div class="media">
-		      <div class="media-left">
-		        <figure class="image is-180x240">
-		          <img src="${img}" alt="Placeholder image">
-		        </figure>
-		      </div>
+		    <div class="media tile is-ancestor">
+
+			<div class="tile is-parent">
+			    <figure class="image is-180x240">
+			    	<img src="${img}" alt="Placeholder image">
+			    </figure>
+			</div>
+
+			<div class="tile is-parent is-9">
 		      <div class="media-content">
 		        <p class="title is-4">${title}</p>
 		        <p class="subtitle is-6">${audio} - ${ano}</p>
@@ -22,10 +25,13 @@ function create_film_item(title, img, audio, ano, nota_imdb, link) {
 					</div>
 				</div>
 		      </div>
+			</div>
+
 		    </div>
 		  </div>
 		</div>
 	`;
+
 	return film_item;
 }
 
@@ -59,12 +65,18 @@ function load_films(s) {
 	  	}
 	  	document.getElementById('list_films').innerHTML = list_films;
 	  	document.getElementById("div-search").classList.remove("is-loading");
+	  	document.getElementById("input-search").disabled = false;
+	  	document.getElementById("btn-search").removeAttribute('disabled');
 	  })
 	  .catch(error => console.log('error', error));
 }
 
 function search_film() {
-	let search_value = document.getElementById("input-search").value;
+	console.log('test');
+	const search_input = document.getElementById("input-search");
+	let search_value = search_input.value;
+	search_input.disabled = true;
+	document.getElementById("btn-search").setAttribute('disabled', true);
 
 	document.getElementById("div-search").classList.add("is-loading");
 	load_films(search_value);
