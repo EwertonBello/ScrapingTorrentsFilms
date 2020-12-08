@@ -128,6 +128,16 @@ function create_film_details(title, img, sinopse, links) {
 
 	let film_details = `
 		<div class="card mt-3">
+		  <header class="card-header">
+			<a class="card-header-icon">
+				<span class="icon is-small">
+			    	<i class="fas fa-arrow-left"></i>
+			    </span>
+			</a>
+		    <p class="card-header-title">
+		      Detalhes
+		    </p>
+		  </header>
 		  <div class="card-content">
 		    <div class="columns is-tablet">
 		      <div class="column">
