@@ -61,7 +61,7 @@ function searchFilm() {
 document.getElementById("input-search")
 	.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
-  	search_film();
+  	searchFilm();
   }
 });
 
