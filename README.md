@@ -8,4 +8,6 @@ app: https://searchtorrentfilms.netlify.app/
 
 ## Resources
 
-favicon: https://iconify.design/icon-sets/
+- favicon: https://iconify.design/icon-sets/  
+  
+- components: https://bulma.io/  
