@@ -35,6 +35,7 @@ function create_film_item(title, img, audio, ano, nota_imdb, link) {
 	return film_item;
 }
 
+let list_films = "";
 function load_films(s) {
 	const url = BASE_URL+s;
 	fetch(proxyUrl+url)
@@ -44,7 +45,6 @@ function load_films(s) {
 	  	const doc = new DOMParser().parseFromString(html, "text/html");
 	  	const films = doc.querySelectorAll('.listagem .item');
 
-	  	let list_films = "";
 
 	  	films.forEach((film, i)=>{
 
@@ -80,6 +80,10 @@ function search_film() {
 
 	document.getElementById("div-search").classList.add("is-loading");
 	load_films(search_value);
+}
+
+function back_list() {
+	document.getElementById('list_films').innerHTML = list_films;
 }
 
 document.getElementById("input-search")
@@ -129,7 +133,7 @@ function create_film_details(title, img, sinopse, links) {
 	let film_details = `
 		<div class="card mt-3">
 		  <header class="card-header">
-			<a class="card-header-icon">
+			<a onclick="back_list()" class="card-header-icon">
 				<span class="icon is-small">
 			    	<i class="fas fa-arrow-left"></i>
 			    </span>
@@ -165,8 +169,8 @@ function create_film_details(title, img, sinopse, links) {
 }
 
 function load_film(url) {
-	const list_films = document.getElementById('list_films');
-	list_films.innerHTML = `
+	const div_list_films = document.getElementById('list_films');
+	div_list_films.innerHTML = `
 		<progress class="progress is-small is-primary mt-5" max="100">15%</progress>
 	`;
 
@@ -184,7 +188,7 @@ function load_film(url) {
 
 	  	let details_film = create_film_details(film_title, film_img, film_sinopse, film_links);
 	  	
-	  	list_films.innerHTML = details_film;
+	  	div_list_films.innerHTML = details_film;
 	  })
 	  .catch(error => console.log('error', error));
 }
