@@ -45,6 +45,8 @@ function load_films(s) {
 	  	const doc = new DOMParser().parseFromString(html, "text/html");
 	  	const films = doc.querySelectorAll('.listagem .item');
 
+	  	// clear list
+	  	list_films = "";
 
 	  	films.forEach((film, i)=>{
 
