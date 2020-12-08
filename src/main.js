@@ -98,7 +98,7 @@ document.getElementById("input-search")
 // ########## DETAILS ##########
 function create_film_details(title, img, sinopse, links) {
 	let torrent_items = '';
-	links.forEach((link, i)=>{
+	links.forEach((link, i) => {
 		let link_eps = '';
 		let link_res = '';
 		let link_quality = '';
