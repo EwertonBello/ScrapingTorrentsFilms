@@ -34,7 +34,6 @@ function startsTheme(){
 }
 
 function toggleDarkMode(){
-
     isDark = getDarkStatusFromLocalStorage();
     
     if(isDark === 'true'){

@@ -3,7 +3,7 @@ const BASE_URL = "https://www.baixarfilmetorrent.net/?s=";
 
 function createFilmItem(title, img, audio, ano, nota_imdb, link) {
 	let film_item = `
-		<div class="card mt-3 onclick="loadFilm('${link}')">
+		<div class="card mt-3" onclick="loadFilm('${link}')">
 			<card className="content">
 				<img class="mt-3" src="${img}" alt="item-film">
 				<p class="title is-4">${title}</p>
@@ -129,7 +129,7 @@ function loadFilm(url) {
 	  	let film_sinopse = film.querySelectorAll('p')[7].innerText;
 	  	let film_links = film.querySelectorAll('.tr-mv-list');
 
-	  	let details_film = create_film_details(film_title, film_img, film_sinopse, film_links);
+	  	let details_film = createFilmDetails(film_title, film_img, film_sinopse, film_links);
 	  	
 	  	list_films.innerHTML = details_film;
 	  })
