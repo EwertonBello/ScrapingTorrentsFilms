@@ -102,6 +102,8 @@ function create_torrent_item(tbl_links, tipo) {
 	tbl_links.forEach((tbl, i) => {
 		let links = tbl.querySelectorAll('.tr-'+tipo+'-list');
 
+		let audio = tbl.querySelector('.tbl-'+tipo+'-tit strong').innerText;
+
 		links.forEach((link, i) => {
 			let link_extra = '';
 			let link_res = '';
@@ -124,6 +126,7 @@ function create_torrent_item(tbl_links, tipo) {
 
 			torrent_items += `
 				<tr>
+					<td>${audio}</td>
 					${link_extra}
 					<td>${link_res}</td>
 					<td>${link_quality}</td>
@@ -140,41 +143,6 @@ function create_torrent_item(tbl_links, tipo) {
 
 function create_film_details(title, img, sinopse, tbl_links, tipo) {
 	let torrent_items = create_torrent_item(tbl_links, tipo);
-	// let torrent_items = '';
-
-	// links.forEach((link, i) => {
-	// 	let link_eps = '';
-	// 	let link_res = '';
-	// 	let link_quality = '';
-	// 	let link_tam = '';
-	// 	let link_format = '';
-
-	// 	if (link.querySelector('.td-ep-eps')) {
-	// 		link_eps = '<td>'+link.querySelector('.td-ep-eps').innerText+'</td>';
-	// 		link_res = link.querySelector('.td-ep-res').innerText;
-	// 		link_quality = link.querySelector('.td-ep-qua').innerText;
-	// 		link_tam = link.querySelector('.td-ep-tam').innerText;
-	// 		link_format = link.querySelector('.td-ep-for').innerText;
-	// 	} else {
-	// 		link_res = link.querySelector('.td-mv-res').innerText;
-	// 		link_quality = link.querySelector('.td-mv-qua').innerText;
-	// 		link_tam = link.querySelector('.td-mv-tam').innerText;
-	// 		link_format = link.querySelector('.td-mv-for').innerText;
-	// 	}
-	// 	let link_download = link.querySelector('a').href;
-		
-	// 	torrent_items += `
-	// 		<tr>
-	// 			${link_eps}
-	// 			<td>${link_res}</td>
-	// 			<td>${link_quality}</td>
-	// 			<td>${link_tam}</td>
-	// 			<td>${link_format}</td>
-	// 			<td><a href="${link_download}">Link</a></td>
-	// 	    </tr>
-	// 	`;
-
-	// });
 
 	let film_details = `
 		<div class="card mt-3">
