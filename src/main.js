@@ -96,41 +96,85 @@ document.getElementById("input-search")
 });
 
 // ########## DETAILS ##########
-function create_film_details(title, img, sinopse, links) {
+function create_torrent_item(tbl_links, tipo) {
 	let torrent_items = '';
-	links.forEach((link, i) => {
-		let link_eps = '';
-		let link_res = '';
-		let link_quality = '';
-		let link_tam = '';
-		let link_format = '';
 
-		if (link.querySelector('.td-ep-eps')) {
-			link_eps = '<td>'+link.querySelector('.td-ep-eps').innerText+'</td>';
-			link_res = link.querySelector('.td-ep-res').innerText;
-			link_quality = link.querySelector('.td-ep-qua').innerText;
-			link_tam = link.querySelector('.td-ep-tam').innerText;
-			link_format = link.querySelector('.td-ep-for').innerText;
-		} else {
-			link_res = link.querySelector('.td-mv-res').innerText;
-			link_quality = link.querySelector('.td-mv-qua').innerText;
-			link_tam = link.querySelector('.td-mv-tam').innerText;
-			link_format = link.querySelector('.td-mv-for').innerText;
-		}
-		let link_download = link.querySelector('a').href;
-		
-		torrent_items += `
-			<tr>
-				${link_eps}
-				<td>${link_res}</td>
-				<td>${link_quality}</td>
-				<td>${link_tam}</td>
-				<td>${link_format}</td>
-				<td><a href="${link_download}">Link</a></td>
-		    </tr>
-		`;
+	tbl_links.forEach((tbl, i) => {
+		let links = tbl.querySelectorAll('.tr-'+tipo+'-list');
 
+		links.forEach((link, i) => {
+			let link_extra = '';
+			let link_res = '';
+			let link_quality = '';
+			let link_tam = '';
+			let link_format = '';
+
+			if (tipo === "ep") {
+				link_extra = '<td>'+link.querySelector('.td-ep-eps').innerText+'</td>';
+			} else if (tipo === "tp") {
+				link_extra = '<td>'+link.querySelector('.td-tp-aud').innerText+'</td>';
+			}
+
+			link_res = link.querySelector('.td-'+tipo+'-res').innerText;
+			link_quality = link.querySelector('.td-'+tipo+'-qua').innerText;
+			link_tam = link.querySelector('.td-'+tipo+'-tam').innerText;
+			link_format = link.querySelector('.td-'+tipo+'-for').innerText;
+
+			let link_download = link.querySelector('a').href;
+
+			torrent_items += `
+				<tr>
+					${link_extra}
+					<td>${link_res}</td>
+					<td>${link_quality}</td>
+					<td>${link_tam}</td>
+					<td>${link_format}</td>
+					<td><a href="${link_download}">Link</a></td>
+			    </tr>
+			`;
+		});
 	});
+
+	return torrent_items;
+}
+
+function create_film_details(title, img, sinopse, tbl_links, tipo) {
+	let torrent_items = create_torrent_item(tbl_links, tipo);
+	// let torrent_items = '';
+
+	// links.forEach((link, i) => {
+	// 	let link_eps = '';
+	// 	let link_res = '';
+	// 	let link_quality = '';
+	// 	let link_tam = '';
+	// 	let link_format = '';
+
+	// 	if (link.querySelector('.td-ep-eps')) {
+	// 		link_eps = '<td>'+link.querySelector('.td-ep-eps').innerText+'</td>';
+	// 		link_res = link.querySelector('.td-ep-res').innerText;
+	// 		link_quality = link.querySelector('.td-ep-qua').innerText;
+	// 		link_tam = link.querySelector('.td-ep-tam').innerText;
+	// 		link_format = link.querySelector('.td-ep-for').innerText;
+	// 	} else {
+	// 		link_res = link.querySelector('.td-mv-res').innerText;
+	// 		link_quality = link.querySelector('.td-mv-qua').innerText;
+	// 		link_tam = link.querySelector('.td-mv-tam').innerText;
+	// 		link_format = link.querySelector('.td-mv-for').innerText;
+	// 	}
+	// 	let link_download = link.querySelector('a').href;
+		
+	// 	torrent_items += `
+	// 		<tr>
+	// 			${link_eps}
+	// 			<td>${link_res}</td>
+	// 			<td>${link_quality}</td>
+	// 			<td>${link_tam}</td>
+	// 			<td>${link_format}</td>
+	// 			<td><a href="${link_download}">Link</a></td>
+	// 	    </tr>
+	// 	`;
+
+	// });
 
 	let film_details = `
 		<div class="card mt-3">
@@ -186,9 +230,18 @@ function load_film(url) {
   		let film_title = film.querySelector('.entry-title').innerText;
 	  	let film_img = film.querySelector('img').src;
 	  	let film_sinopse = film.querySelectorAll('p')[7].innerText;
-	  	let film_links = film.querySelectorAll('.tr-mv-list').length > 0? film.querySelectorAll('.tr-mv-list') : film.querySelectorAll('.tr-ep-list');
+	  	let film_links = film.querySelectorAll('.tbl-mv-list');
+	  	let tipo = "mv";
 
-	  	let details_film = create_film_details(film_title, film_img, film_sinopse, film_links);
+	  	if (film.querySelectorAll('.tbl-ep-list').length > 0) {
+		  	film_links = film.querySelectorAll('.tbl-ep-list');
+		  	tipo = "ep";
+	  	} else if (film.querySelectorAll('.tbl-tp-list').length > 0) {
+		  	film_links = film.querySelectorAll('.tbl-tp-list');
+		  	tipo = "tp";
+	  	}
+
+	  	let details_film = create_film_details(film_title, film_img, film_sinopse, film_links, tipo);
 	  	
 	  	div_list_films.innerHTML = details_film;
 	  })
