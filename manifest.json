@@ -1,0 +1,23 @@
+{
+    "dir": "ltr",
+    "lang": "pt-BR",
+    "name": "Scraping Torrents Films",
+    "short_name": "Scraping Torren",
+    "scope": "/",
+    "display": "standalone",
+    "start_url": "https://searchtorrentfilms.netlify.app/",
+    "background_color": "#000000",
+    "theme_color": "transparent",
+    "description": "",
+    "orientation": "any",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [      
+        {
+            "src": "favicon.svg",
+            "sizes": "192x192"
+        }
+    ],
+    "url": "https://searchtorrentfilms.netlify.app/",
+    "screenshots": []
+}
