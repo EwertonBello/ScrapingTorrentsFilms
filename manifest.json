@@ -14,8 +14,8 @@
     "prefer_related_applications": false,
     "icons": [      
         {
-            "src": "favicon.svg",
-            "sizes": "24x24"
+            "src": "icon-192x192.svg",
+            "sizes": "192x192"
         },
     ],
     "url": "https://searchtorrentfilms.netlify.app/",
