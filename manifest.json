@@ -7,7 +7,7 @@
     "display": "standalone",
     "start_url": "https://searchtorrentfilms.netlify.app/",
     "background_color": "#FFFFFF",
-    "theme_color": "#333333",
+    "theme_color": "#00D1B2",
     "description": "",
     "orientation": "any",
     "related_applications": [],
