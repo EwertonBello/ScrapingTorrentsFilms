@@ -11,3 +11,5 @@ app: https://searchtorrentfilms.netlify.app/
 - favicon: https://iconify.design/icon-sets/  
   
 - components: https://bulma.io/  
+
+- PWA: https://www.pwabuilder.com/
