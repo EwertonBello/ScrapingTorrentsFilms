@@ -5,7 +5,7 @@ Um buscador de filmes e séries
 
 ## Demo
 
-Desativado
+app: https://searchtorrentfilms.netlify.app/
 
 ## Resources
 

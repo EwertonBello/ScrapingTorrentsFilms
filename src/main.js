@@ -1,4 +1,4 @@
-const proxyUrl = '';
+const proxyUrl = 'https://cors.bridged.cc/';
 const BASE_URL = "https://www.baixarfilmetorrent.net/?s=";
 
 function create_film_item(title, img, audio, ano, nota_imdb, link) {
@@ -37,8 +37,15 @@ function create_film_item(title, img, audio, ano, nota_imdb, link) {
 
 let list_films = "";
 function load_films(s) {
+	const myHeaders = new Headers();
+	myHeaders.append("Cookie", "__cfduid=d42912c3d7fab88a405b6af8f5e2af1591613837830");
+	const requestOptions = {
+		method: 'GET',
+		headers: myHeaders,
+		redirect: 'follow'
+	};
 	const url = BASE_URL+s;
-	fetch(proxyUrl+url)
+	fetch(proxyUrl+url, requestOptions)
 	  .then(response => response.text())
 	  .then(html => {
 
