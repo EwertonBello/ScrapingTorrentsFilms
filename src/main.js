@@ -1,4 +1,4 @@
-const proxyUrl = 'https://cors.bridged.cc/';
+const proxyUrl = '';
 const BASE_URL = "https://www.baixarfilmetorrent.net/?s=";
 
 function create_film_item(title, img, audio, ano, nota_imdb, link) {
